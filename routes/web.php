@@ -1,23 +1,23 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
-    return view('dashboard');
+    return view('login');
 });
 
-Route::resource('imam', 'ImamCT');
-Route::resource('kitab', 'KitabCT');
-Route::resource('bab', 'BabCT');
-Route::resource('hadits', 'HaditsCT');
-Route::resource('notif', 'NotifCT');
-
+Route::group(['middleware' => 'checklogin'], function () {
+	Route::resource('imam', 'ImamCT');
+});
+Route::group(['middleware' => 'checklogin'], function () {
+	Route::resource('kitab', 'KitabCT');
+});
+Route::group(['middleware' => 'checklogin'], function () {
+	Route::resource('bab', 'BabCT');
+});
+Route::group(['middleware' => 'checklogin'], function () {
+	Route::resource('hadits', 'HaditsCT');
+});
+Route::group(['middleware' => 'checklogin'], function () {
+	Route::resource('notif', 'NotifCT');
+});
+Route::post('/adm/login', 'AdmCT@login');
+Route::get('/adm/logout', 'AdmCT@logout');

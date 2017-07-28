@@ -144,6 +144,14 @@
 		$("#modal_delete").on("hidden.bs.modal", function(){
 			$(this).removeData('bs.modal');
 		});
+		$('#table').DataTable({
+			'paging'      : true,
+			'lengthChange': false,
+			'searching'   : true,
+			'ordering'    : false,
+			'info'        : true,
+			'autoWidth'   : false
+		})
 	});
 </script>
 @endsection
