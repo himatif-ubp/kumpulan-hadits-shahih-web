@@ -38,70 +38,38 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<body class="hold-transition login-page" style="background: #1A3E58;">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">UBP</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Buana</b> Perjuangan</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">    
-      
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Manage</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="/imam"><i class="fa fa-folder-open-o"></i>Imam</a></li>
-            <li><a href="/kitab"><i class="fa fa-folder-open-o"></i>Kitab</a></li>
-            <li><a href="/bab"><i class="fa fa-folder-open-o"></i>Bab</a></li>
-            <li><a href="/hadits"><i class="fa fa-folder-open-o"></i>Hadits</a></li>
-            <li><a href="/notif"><i class="fa fa-folder-open-o"></i>Notifikasi</a></li>
-            <li><a href="/adm/logout"><i class="fa"></i>Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @yield('content')
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.1.0
+  <div class="login-box">
+      <div class="login-logo">
+      </div>
+      <div class="login-box-body" style="background: #E9E9E9">
+        @if(Session::has('alert-wrong'))
+        <div class="alert alert-danger">{{ Session::get('alert-wrong') }}</div>
+        @endif
+        <center>
+          <h3><b>LOGIN</b></h3>
+        </center>
+        <br>
+        <form action="/adm/login" method="post">
+          {{csrf_field()}}
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="User ID" name="user_id" required="">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" name="pkey" required="">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <strong><!-- Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong>  -->All rights
-    reserved.
-  </footer>
-
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
+  </div>
 
 <!-- jQuery 3 -->
 <script src="{{ URL::asset('assets/jquery/dist/jquery.min.js')}}"></script>
